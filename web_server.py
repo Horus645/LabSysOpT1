@@ -44,7 +44,36 @@ def proccap():
 
 
 def mem():
-    return ""
+    "For this function, we follow the same calculations as the `free` command"
+    lines = read_file("/proc/meminfo").split('\n')
+    # MemTotal
+    for s in lines[0].split(' '):
+        if s.isnumeric():
+            total = int(s)
+            break
+    # MemFree
+    for s in lines[1].split(' '):
+        if s.isnumeric():
+            free = int(s)
+            break
+    # Buffers
+    for s in lines[3].split(' '):
+        if s.isnumeric():
+            buffers = int(s)
+            break
+    # Cached
+    for s in lines[4].split(' '):
+        if s.isnumeric():
+            cache = int(s)
+            break
+    # SReclaimable
+    for s in lines[25].split(' '):
+        if s.isnumeric():
+            cache += int(s)
+            break
+
+    used = total - free - buffers - cache
+    return "Total: " + str(total) + "Kb, Used: " + str(used) + "Kb"
 
 
 def sysversion():
@@ -52,7 +81,14 @@ def sysversion():
 
 
 def proc_list():
-    return ""
+    ret = "<br>Pid Name<br>"
+    for dir_entry in os.listdir("/proc"):
+        if dir_entry.isnumeric():
+            s = read_file("/proc/" + dir_entry + "/stat")
+            pid = s.split(' ')[0]
+            name = s.split(' ')[1].strip("()")
+            ret += pid + " " + name + "<br>"
+    return ret
 
 
 class MyHandler(BaseHTTPRequestHandler):
