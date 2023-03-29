@@ -67,7 +67,7 @@ def mem():
             cache = int(s)
             break
     # SReclaimable
-    for s in lines[25].split(' '):
+    for s in lines[27].split(' '):
         if s.isnumeric():
             cache += int(s)
             break
