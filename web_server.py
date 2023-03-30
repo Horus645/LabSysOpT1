@@ -59,7 +59,10 @@ def procinfo():
 
 
 def proccap():
-    return ""
+    cpustats = read_file("/proc/stat").split('\n')[0].split(' ')[2:]
+    ret = ""
+    return ret
+
 
 
 def mem():
