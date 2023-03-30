@@ -1,4 +1,3 @@
-import time
 import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
@@ -28,7 +27,11 @@ def time_from_seconds(total_seconds) -> str:
 # NOTE: run `man proc` to find out what exists in the /proc directory
 
 def date_time():
-    return ""
+    lines = read_file("/proc/driver/rtc").split('\n')
+    time = lines[0].split(':', 1)[1].strip()
+    date = lines[1].split(':')[1].strip()
+
+    return date + " --- " + time
 
 
 def uptime():
