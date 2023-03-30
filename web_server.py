@@ -8,6 +8,8 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 HOST_NAME = '127.0.0.1'
 PORT_NUMBER = 8000
 
+HTML_INDENT = "&nbsp&nbsp&nbsp&nbsp"
+
 
 def read_file(filepath) -> str:
     file = open(filepath, "r")
@@ -36,7 +38,21 @@ def uptime():
 
 
 def procinfo():
-    return ""
+    lines = read_file("/proc/cpuinfo").split('\n')
+    ret = "<br>"
+    for line in lines:
+        words = line.split(':')
+        key = words[0].strip()
+        value = words[1].strip()
+        if key == "vendor_id" or  \
+           key == "cpu family" or \
+           key == "model" or      \
+           key == "model name":
+            ret += HTML_INDENT + key + ": " + value + "<br>"
+        elif key == "cpu MHz":
+            ret += HTML_INDENT + key + ": " + value + "<br>"
+            break
+    return ret
 
 
 def proccap():
@@ -81,13 +97,13 @@ def sysversion():
 
 
 def proc_list():
-    ret = "<br>Pid Name<br>"
+    ret = "<br>" + HTML_INDENT + "Pid Name<br>"
     for dir_entry in os.listdir("/proc"):
         if dir_entry.isnumeric():
             s = read_file("/proc/" + dir_entry + "/stat")
             pid = s.split(' ')[0]
             name = s.split(' ')[1].strip("()")
-            ret += pid + " " + name + "<br>"
+            ret += HTML_INDENT + pid + " " + name + "<br>"
     return ret
 
 
