@@ -15,6 +15,36 @@ def read_file(filepath) -> str:
     return file.read()
 
 
+prev_idle = 0
+prev_non_idle = 0
+
+
+def updt_proc_usage() -> float:
+    global prev_idle
+    global prev_non_idle
+    cpustats = read_file("/proc/stat").split('\n')[0].split(' ')[2:]
+    idle = int(cpustats[3]) + int(cpustats[4])  # idle + iowait
+    non_idle = int(cpustats[0]) + \
+        int(cpustats[1]) +        \
+        int(cpustats[2]) +        \
+        int(cpustats[5]) +        \
+        int(cpustats[6]) +        \
+        int(cpustats[7])
+
+    prev_total = prev_idle + prev_non_idle
+    total = idle + non_idle
+
+    totald = total - prev_total
+    idled = idle - prev_idle
+
+    cpu_percentage = float(totald - idled) / float(totald)
+
+    prev_idle = idle
+    prev_non_idle = non_idle
+
+    return cpu_percentage * 100.0
+
+
 def time_from_seconds(total_seconds) -> str:
     hours = int(total_seconds / 3600)
     minutes = int((total_seconds % 3600) / 60)
@@ -59,10 +89,9 @@ def procinfo():
 
 
 def proccap():
-    cpustats = read_file("/proc/stat").split('\n')[0].split(' ')[2:]
-    ret = ""
+    percentage = updt_proc_usage()
+    ret = str(percentage) + "%"
     return ret
-
 
 
 def mem():
@@ -145,6 +174,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
+    updt_proc_usage()
     httpd = HTTPServer((HOST_NAME, PORT_NUMBER), MyHandler)
     print("Server Starts - %s:%s" % (HOST_NAME, PORT_NUMBER))
     try:
