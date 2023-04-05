@@ -1,11 +1,10 @@
-import time
 import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
-# HOST_NAME = '192.168.1.10'
+HOST_NAME = '192.168.1.10'
 # HOST_NAME = '10.132.248.183'
-HOST_NAME = '127.0.0.1'
+# HOST_NAME = '127.0.0.1'
 PORT_NUMBER = 8000
 
 HTML_INDENT = "&nbsp&nbsp&nbsp&nbsp"
@@ -58,11 +57,11 @@ def time_from_seconds(total_seconds) -> str:
 # NOTE: run `man proc` to find out what exists in the /proc directory
 
 def date_time():
-    #lines = read_file("/proc/driver/rtc").split('\n')
-    #time = lines[0].split(':', 1)[1].strip()
-    #date = lines[1].split(':')[1].strip()
+    # lines = read_file("/proc/driver/rtc").split('\n')
+    # time = lines[0].split(':', 1)[1].strip()
+    # date = lines[1].split(':')[1].strip()
 
-    return time.asctime(time.gmtime(time.time()))
+    return os.popen("date").read()
 
 
 def uptime():
