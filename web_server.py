@@ -49,9 +49,9 @@ def time_from_seconds(total_seconds) -> str:
     hours = int(total_seconds / 3600)
     minutes = int((total_seconds % 3600) / 60)
     seconds = int((total_seconds % 3600) % 60)
-    return str(hours) + "hours, "    \
-        + str(minutes) + "minutes, " \
-        + str(seconds) + "seconds"
+    return str(hours) + " hours, "    \
+        + str(minutes) + " minutes, " \
+        + str(seconds) + " seconds"
 
 
 # NOTE: run `man proc` to find out what exists in the /proc directory
