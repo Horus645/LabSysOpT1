@@ -45,6 +45,7 @@ Abrindo o menuconfig, defina a seguinte configuração:
 * Abra um novo terminal na máquina Host e tente conectar via SSH na Guest com o comando:
  ```ssh root@<IP da Guest>```
  * Para descobrir o IP da máquina Guest, execute o comando `ifconfig` dentro dela(IPv4 da interface eth0)
+ * Para sair da sessão SSH, utilize Ctrl+d.
  
 ## Rodando o servidor HTTP
 
