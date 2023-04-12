@@ -1,6 +1,6 @@
 Alunos:
-	Leonardo Gibrowski Faé (20280524-8)
-	Ricardo Guimarães (20280681-6)
+  * Leonardo Gibrowski Faé (20280524-8)
+  * Ricardo Guimarães (20280681-6)
 
 Repositório: https://github.com/Horus645/LabSysOpT1
 
