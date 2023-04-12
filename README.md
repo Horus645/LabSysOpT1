@@ -69,3 +69,4 @@ python web_server.py
 ### Visualizando a página HTTP
 
 A página estará disponível no endereço `<IP do Target>:8000`. Você pode acessá-la usando um browser qualquer.
+`screenshot.png` tem um exemplo de como a página será apresentada.
