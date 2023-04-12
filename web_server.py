@@ -1,10 +1,13 @@
+# Alunos:
+#   Leonardo Gibrowski Faé (20280524-8)
+#   Ricardo Guimarães (20280681-6)
+# Repositório: https://github.com/Horus645/LabSysOpT1
+
 import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
 HOST_NAME = '192.168.1.10'
-# HOST_NAME = '10.132.248.183'
-# HOST_NAME = '127.0.0.1'
 PORT_NUMBER = 8000
 
 HTML_INDENT = "&nbsp&nbsp&nbsp&nbsp"
