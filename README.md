@@ -6,7 +6,7 @@ Repositório: https://github.com/Horus645/LabSysOpT1
 
 # Tutorial para reprodução do trabalho
 
-Essas instruções pressupões que o usuário já efetuou os passos descritos nos tutoriais 1.1, 1.2 e 1.3, disponibilizados pelo professor. Em particular, o usuário deverá
+Essas instruções pressupõem que o usuário já efetuou os passos descritos nos tutoriais 1.1, 1.2 e 1.3, disponibilizados pelo professor. Em particular, o usuário deverá
 criar uma rota entre a máquina Host e a máquina Guest(QEMU)(testar com o Ping).
 
 ## Instalando o Interpretador do Python:
